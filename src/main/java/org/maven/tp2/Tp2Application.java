@@ -5,26 +5,21 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class Tp2Application {
 
     public static void main(String[] args) {
-
-        ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+        AnnotationConfigApplicationContext context = new
+                AnnotationConfigApplicationContext(ApplicationConfig.class);
         StudentService studentService = context.getBean(StudentService.class);
-
-        // Création
-        Student etudiante1 = new Student(1, "oumaima achour", 22);
-        Student etudiante2 = new Student(2, "taylor swift", 33);
-
-        //
-        studentService.createStudent(etudiante1);
-        studentService.createStudent(etudiante2);
-
-        //
-        Student retrievedStudent1 = studentService.getStudentById(1);
-        Student retrievedStudent2 = studentService.getStudentById(2);
-        System.out.println("1-le premier etudiant: " + retrievedStudent1);
-        System.out.println("2-le deuxieme etudiant : " + retrievedStudent1);
-
-        studentService.displayAllStudents();
-
+        // Create students
+        Student student1 = new Student(1L, "John Doe", 20);
+        Student student2 = new Student(2L, "Jane Smith", 22);
+        studentService.createStudent(student1);
+        studentService.createStudent(student2);
+        // Find student by ID
+        Student foundStudent = studentService.findStudentById(1L);
+        System.out.println("Found Student: " + foundStudent.getName());
+        // Display all students
+        System.out.println("All Students:");
+        studentService.findAllStudents().forEach(student -> System.out.println(student.getName()));
+        context.close();
     }
 
 }

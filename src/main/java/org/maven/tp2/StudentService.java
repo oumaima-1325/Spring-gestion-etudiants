@@ -1,9 +1,8 @@
 package org.maven.tp2;
+import java.util.List;
+
 public interface StudentService {
-
-    void createStudent(Student student);
-
-    Student getStudentById(long id);
-
-    void displayAllStudents();
+    Student createStudent(Student student);
+    Student findStudentById(Long id);
+    List<Student> findAllStudents();
 }

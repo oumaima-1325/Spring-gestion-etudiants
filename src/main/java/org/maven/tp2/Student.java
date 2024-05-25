@@ -1,25 +1,17 @@
 package org.maven.tp2;
 
 public class Student {
-    private long id;
+    private Long id;
     private String name;
     private int age;
-
-    // Constructeur
-    public Student(long id, String name, int age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
+    // Constructors, getters and setters
+    public Student() {}
+    public Student(Long id, String name, int age) {this.id = id;
+        this.name = name;this.age = age;
     }
+    public Long getId() {return id;}
 
-    // Getters et setters
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
+    public void setId(Long id) {this.id = id;}
 
     public String getName() {
         return name;

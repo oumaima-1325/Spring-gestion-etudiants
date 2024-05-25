@@ -5,14 +5,10 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ApplicationConfig {
-
     @Bean
     public StudentRepository studentRepository() {
-        return new InMemoryStudentRepository();
-    }
-
+        return new InMemoryStudentRepository();}
     @Bean
     public StudentService studentService(StudentRepository studentRepository) {
-        return new StudentServiceImpl(studentRepository);
-    }
+        return new StudentServiceImpl(studentRepository);}
 }

@@ -1,22 +1,20 @@
 package org.maven.tp2;
 
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
 public class StudentServiceMock implements StudentService {
-    @Override
-    public void createStudent(Student student) {
-
-        System.out.println("Creation de l'etudiant: " + student.getName());
-    }
-
-    @Override
-    public Student getStudentById(long id) {
-
-        return new Student(id, " etudiant Mock", 22);
-    }
-
-    @Override
-    public void displayAllStudents() {
-
-        System.out.println("affichage des etudiants ");
-    }
+    private List<Student> students = new ArrayList<>();
+    public Student createStudent(Student student) {
+        students.add(student);
+        return student;}
+    public Student findStudentById(Long id) {
+        return students.stream().filter(student ->
+                student.getId().equals(id)).findFirst().orElse(null);}
+    public List<Student> findAllStudents() {
+        return new ArrayList<>(students);}
 }
 

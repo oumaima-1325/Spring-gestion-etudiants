@@ -1,26 +1,19 @@
 package org.maven.tp2;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.springframework.stereotype.Repository;
 
+import java.util.*;
+
+@Repository // Spring est utilisée pour indiquer que la classe sert
+// de dépôt de données (repository) et qu'elle interagit avec
+// la base de données ou d'autres sources de données.
 public class InMemoryStudentRepository implements StudentRepository {
-    private final Map<Long, Student> studentsMap = new HashMap<>();
-
-    @Override
-    public void save(Student student) {
-        studentsMap.put(student.getId(), student);
-    }
-
-    @Override
-    public Student findById(long id) {
-        return studentsMap.get(id);
-    }
-
-    @Override
+    private List<Student> students = new ArrayList<>();
+    public Student save(Student student) {
+        students.add(student);
+        return student;}
+    public Optional<Student> findById(Long id) {
+        return students.stream().filter(student -> student.getId().equals(id)).findFirst();}
     public List<Student> findAll() {
-        return new ArrayList<>(studentsMap.values());
-    }
+        return new ArrayList<>(students);}
 }
-
